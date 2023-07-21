@@ -6,7 +6,7 @@ import haiku as hk
 import jax
 import jax.numpy as jnp
 import numpy as np
-from jax.experimental import optix
+import optax as optix
 
 from rljax.algorithm.sac import SAC
 from rljax.network import ContinuousQFunction, SACDecoder, SACEncoder, SACLinear, StateDependentGaussianPolicy

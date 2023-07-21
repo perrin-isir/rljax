@@ -2,7 +2,7 @@ import haiku as hk
 import jax.numpy as jnp
 import numpy as np
 import pytest
-from jax.experimental import optix
+import optax as optix
 
 from rljax.util.optim import clip_gradient, clip_gradient_norm, optimize, soft_update, weight_decay
 

@@ -6,7 +6,7 @@ from rljax.algorithm.slac import SLAC
 
 def _test_slac(env, algo):
     ob = SlacObservation(env.observation_space, env.action_space, 8)
-    state = env.reset()
+    state, _ = env.reset()
     ob.reset_episode(state)
     algo.buffer.reset_episode(state)
 

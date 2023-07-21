@@ -48,7 +48,7 @@ class SLACTrainer(Trainer):
         # Time to start training.
         self.start_time = time()
         # Initialize the environment.
-        state = self.env.reset()
+        state, _ = self.env.reset()
         self.ob.reset_episode(state)
         self.algo.buffer.reset_episode(state)
 
@@ -81,7 +81,7 @@ class SLACTrainer(Trainer):
         total_return = 0.0
 
         for _ in range(self.num_eval_episodes):
-            state = self.env_test.reset()
+            state, _ = self.env_test.reset()
             self.ob_test.reset_episode(state)
             done = False
             while not done:

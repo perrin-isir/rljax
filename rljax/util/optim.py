@@ -4,7 +4,7 @@ from typing import Any, Tuple
 import haiku as hk
 import jax
 import jax.numpy as jnp
-from jax.experimental import optix
+import optax as optix
 from jax.tree_util import tree_flatten
 
 
@@ -67,7 +67,7 @@ def soft_update(
     """
     Update target network using Polyak-Ruppert Averaging.
     """
-    return jax.tree_multimap(lambda t, s: (1 - tau) * t + tau * s, target_params, online_params)
+    return jax.tree_map(lambda t, s: (1 - tau) * t + tau * s, target_params, online_params)
 
 
 @jax.jit

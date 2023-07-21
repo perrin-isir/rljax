@@ -32,8 +32,8 @@ class Trainer:
         self.env_test = env_test
 
         # Set seeds.
-        self.env.seed(seed)
-        self.env_test.seed(2 ** 31 - seed)
+        # self.env.seed(seed)
+        # self.env_test.seed(2 ** 31 - seed)
 
         # Algorithm.
         self.algo = algo
@@ -55,7 +55,7 @@ class Trainer:
         # Time to start training.
         self.start_time = time()
         # Initialize the environment.
-        state = self.env.reset()
+        state, _ = self.env.reset()
 
         for step in range(1, self.num_agent_steps + 1):
             state = self.algo.step(self.env, state)
@@ -74,11 +74,12 @@ class Trainer:
     def evaluate(self, step):
         total_return = 0.0
         for _ in range(self.num_eval_episodes):
-            state = self.env_test.reset()
+            state, _ = self.env_test.reset()
             done = False
             while not done:
                 action = self.algo.select_action(state)
-                state, reward, done, _ = self.env_test.step(action)
+                state, reward, terminated, truncated, _ = self.env_test.step(action)
+                done = terminated or truncated
                 total_return += reward
 
         # Log mean return.

@@ -151,13 +151,14 @@ class OffPolicyAlgorithm(BaseAlgorithm):
         else:
             action = self.explore(state)
 
-        next_state, reward, done, _ = env.step(action)
+        next_state, reward, terminated, truncated, _ = env.step(action)
+        done = terminated or truncated
         mask = self.get_mask(env, done)
         self.buffer.append(state, action, reward, mask, next_state, done)
 
         if done:
             self.episode_step = 0
-            next_state = env.reset()
+            next_state, _ = env.reset()
 
         return next_state
 
@@ -206,6 +207,6 @@ class OnPolicyAlgorithm(BaseAlgorithm):
 
         if done:
             self.episode_step = 0
-            next_state = env.reset()
+            next_state, _ = env.reset()
 
         return next_state

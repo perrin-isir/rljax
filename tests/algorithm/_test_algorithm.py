@@ -2,7 +2,7 @@ import numpy as np
 
 
 def _test_algorithm(env, algo):
-    state = env.reset()
+    state, _ = env.reset()
 
     for _ in range(4):
         # Test step() method.

@@ -6,7 +6,7 @@ import haiku as hk
 import jax
 import jax.numpy as jnp
 import numpy as np
-from jax.experimental import optix
+import optax as optix
 
 from rljax.network import ContinuousQFunction
 from rljax.util import load_params, save_params
