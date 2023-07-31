@@ -16,6 +16,10 @@ def run(args):
         state_space=env.observation_space,
         action_space=env.action_space,
         seed=args.seed,
+        tau=5e-2,
+        lr_actor=3e-4,
+        lr_critic=3e-3,
+        lr_alpha=3e-4,
     )
 
     time = datetime.now().strftime("%Y%m%d-%H%M")
